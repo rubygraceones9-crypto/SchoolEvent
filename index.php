@@ -1,6 +1,8 @@
 <?php
 require_once 'includes/db.php';
 session_start();
+echo "<!-- DEBUG: CURRENT LINK IS " . (isset($link) ? $link : 'NOT SET YET') . " -->";
+if (isset($_GET['debug_link'])) { die("DEBUG LINK: " . $link); }
 
 if(!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -171,12 +173,10 @@ if(isset($_POST['create_event'])) {
         <?php if($selected_event_id): 
             $evt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM events WHERE id = $selected_event_id"));
             if($evt):
-                $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
-                $host = $_SERVER['HTTP_HOST'];
-                if ($host == 'localhost' || $host == '127.0.0.1') {
-                    $host = '192.168.43.6'; // Your local IP address for mobile access
-                }
-                $dir = dirname($_SERVER['PHP_SELF']);
+                $protocol = "http"; // Force http for local IP access
+                $host = '192.168.43.6'; 
+                $dir = str_replace('\\', '/', dirname($_SERVER['PHP_SELF']));
+                $dir = rtrim($dir, '/');
                 $link = "$protocol://$host$dir/event_view.php?code=" . $evt['qr_identifier'];
                 $qr_api = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" . urlencode($link);
         ?>
