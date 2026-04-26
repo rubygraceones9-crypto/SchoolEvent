@@ -1,0 +1,50 @@
+Section 2 — Project Concept & Idea
+
+What is your project called? (working title is fine)
+School Event Hub
+
+Describe your project in 2–3 sentences.
+School Event Hub is a professional digital media distribution platform designed for high-resolution asset management in educational environments. It provides centralized, event-specific media hubs with automated QR code generation and download tracking to solve the problem of unorganized and low-quality photo sharing during school functions.
+
+What is the ONE core feature your app will demonstrate?
+A centralized media repository featuring automated QR code generation for instant event-specific photo access and high-definition downloads.
+
+Section 3 — Track & Technology Stack
+
+Which track does your project fall under?
+✔ Both tracks apply (Emerging Technology Track & Specialization Track)
+
+What emerging technology or specialization does your project showcase?
+Full-stack Web Application Development with PHP and MySQL Database Systems integration.
+
+Tech stack / tools you plan to use (or are already using)
+Frontend: HTML5, CSS3 (Glassmorphism), JavaScript, Bootstrap 5
+Backend: PHP 8.x
+Database: MySQL
+Other / APIs: QRServer API, Bootstrap Icons
+
+Section 4 — Current Development Status
+
+Where are you right now?
+✔ Feature complete — my core feature works and I am polishing it
+
+Describe what you have done so far
+- Fully migrated the system from prototype to production-grade MySQL.
+- Implemented a premium, formal "Admin Dashboard" UI with advanced modern CSS.
+- Developed an asset metadata system including event categorization and high-resolution media previews.
+- Built-in QR generation logic that automatically creates unique routing links for every event.
+- Implemented secure administrator authentication and session protection for all hub management.
+
+What is your biggest blocker or concern right now?
+Optimizing the system for large media file uploads and ensuring maximum storage efficiency for high-definition assets.
+
+Section 5 — Your Plan for the Remaining Weeks
+
+Period: This week
+Plan: Finalize UI/UX refinements for the student portal and enhance the dashboard's responsive design for mobile accessibility.
+
+Period: Next week
+Plan: Implement download counting logic and enhanced search filters for managing a high volume of event hubs.
+
+Period: Final week (demo prep)
+Plan: Perform comprehensive end-to-end testing, resolve any discovered edge-case bugs, and prepare the project walkthrough and presentation materials.
