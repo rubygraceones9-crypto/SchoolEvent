@@ -173,6 +173,9 @@ if(isset($_POST['create_event'])) {
             if($evt):
                 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
                 $host = $_SERVER['HTTP_HOST'];
+                if ($host == 'localhost' || $host == '127.0.0.1') {
+                    $host = '192.168.43.6'; // Your local IP address for mobile access
+                }
                 $dir = dirname($_SERVER['PHP_SELF']);
                 $link = "$protocol://$host$dir/event_view.php?code=" . $evt['qr_identifier'];
                 $qr_api = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" . urlencode($link);
