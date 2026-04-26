@@ -16,8 +16,15 @@ if(isset($_POST['upload'])) {
     }
 
     $file_name = basename($_FILES["file"]["name"]);
-    // Sanitize filename to avoid issues
-    $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+    $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+    
+    // Broad list of allowed extensions for photos, docs, pdfs, and videos
+    $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'pdf', 'doc', 'docx', 'txt', 'mp4', 'mov', 'webm', 'ogg'];
+    
+    if (!in_array($file_ext, $allowed)) {
+        die("Error: File type not supported. Please upload Photos, PDFs, Docs, or Videos.");
+    }
+
     $clean_name = preg_replace("/[^a-zA-Z0-9]/", "_", pathinfo($file_name, PATHINFO_FILENAME));
     $target_file = $target_dir . time() . "_" . $clean_name . "." . $file_ext;
     
@@ -30,7 +37,7 @@ if(isset($_POST['upload'])) {
         
         header("Location: index.php?success=1");
     } else {
-        echo "Error uploading file.";
+        echo "Error: Upload failed. Please ensure the file is not too large and the uploads folder is writable.";
     }
 }
 ?>
