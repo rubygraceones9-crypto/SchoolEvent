@@ -174,7 +174,7 @@ if(isset($_POST['create_event'])) {
                 <a href="index.php?manage=<?php echo $row['id']; ?>" class="nav-item-card <?php echo $is_active ? 'active' : ''; ?>">
                     <div class="d-flex justify-content-between mb-2">
                         <span class="small fw-bold <?php echo $is_active ? 'text-white-50' : 'text-muted'; ?>"><?php echo date('M d, Y', strtotime($row['event_date'])); ?></span>
-                        <span class="small fw-bold"><?php echo $asset_count; ?> photos</span>
+                        <span class="small fw-bold"><?php echo $asset_count; ?> files</span>
                     </div>
                     <div class="fw-bold" style="font-size: 1.1rem;"><?php echo $row['event_name']; ?></div>
                 </a>
@@ -212,7 +212,7 @@ if(isset($_POST['create_event'])) {
                     <div class="d-flex justify-content-between align-items-end">
                         <div>
                             <h2 class="page-title"><?php echo $evt['event_name']; ?></h2>
-                            <p class="text-muted mb-0 lead" style="max-width: 600px;"><?php echo $evt['event_description'] ?: 'The system is ready to manage photos for this event.'; ?></p>
+                            <p class="text-muted mb-0 lead" style="max-width: 600px;"><?php echo $evt['event_description'] ?: 'The system is ready to manage files for this event.'; ?></p>
                         </div>
                         <div class="d-flex gap-2">
                             <a href="<?php echo $link; ?>" target="_blank" class="btn btn-outline-primary"><i class="bi bi-box-arrow-up-right me-2"></i> View Sample Page</a>
@@ -226,7 +226,7 @@ if(isset($_POST['create_event'])) {
                         <div class="white-card p-5">
                             <h4 class="fw-bold mb-5 d-flex align-items-center">
                                 <i class="bi bi-images me-3 text-primary"></i> 
-                                Your Photos
+                                Event Media
                                 <span class="badge bg-primary ms-3 small" style="font-size: 0.6rem; vertical-align: middle;">CHECKED</span>
                             </h4>
                             <div class="asset-grid">
@@ -266,15 +266,15 @@ if(isset($_POST['create_event'])) {
                                         </div>
                                     </div>
                                 <?php } ?>
-                                <?php if(mysqli_num_rows($assets) == 0) echo '<div class="col-12 text-center py-5 text-muted">Start by adding some photos or files.</div>'; ?>
+                                <?php if(mysqli_num_rows($assets) == 0) echo '<div class="col-12 text-center py-5 text-muted">Start by adding some files or media.</div>'; ?>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="white-card p-4 mb-4" style="background: #eff6ff;">
-                            <h6 class="fw-bold text-uppercase small mb-4 text-primary d-flex justify-content-between">
-                                <span>Add New Photo</span>
+                             <h6 class="fw-bold text-uppercase small mb-4 text-primary d-flex justify-content-between">
+                                <span>Add New Media</span>
                                 <i class="bi bi-cloud-arrow-up"></i>
                             </h6>
                             <form action="upload.php" method="POST" enctype="multipart/form-data">
@@ -283,9 +283,9 @@ if(isset($_POST['create_event'])) {
                                     <input type="file" name="file" class="form-control form-control-sm border-primary border-opacity-20 py-2" required>
                                 </div>
                                 <div class="mb-4">
-                                    <input type="text" name="title" class="form-control form-control-sm border-primary border-opacity-20 py-2" placeholder="Photo Title">
+                                    <input type="text" name="title" class="form-control form-control-sm border-primary border-opacity-20 py-2" placeholder="Media Title">
                                 </div>
-                                <button type="submit" name="upload" class="btn btn-primary w-100">Add Photo</button>
+                                <button type="submit" name="upload" class="btn btn-primary w-100">Add Media</button>
                             </form>
                         </div>
 

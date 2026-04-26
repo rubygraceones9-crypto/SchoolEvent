@@ -126,8 +126,8 @@ if(!$event) {
             if(mysqli_num_rows($assets) == 0): ?>
                 <div class="col-12 empty-state">
                     <i class="bi bi-folder2-open display-1 text-light mb-3"></i>
-                    <h4 class="fw-bold text-muted">No photos yet</h4>
-                    <p class="text-muted">Photos will show here soon.</p>
+                    <h4 class="fw-bold text-muted">No media yet</h4>
+                    <p class="text-muted">Media will show here soon.</p>
                 </div>
             <?php endif;
             while($media = mysqli_fetch_assoc($assets)) {

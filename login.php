@@ -188,7 +188,7 @@ if(isset($_POST['login'])) {
     <div class="login-form-area">
         <img src="logo.png" alt="EventHub Logo" class="logo-img">
         <h1 class="title">Admin Login</h1>
-        <p class="subtitle">Log in to manage your school event photos.</p>
+        <p class="subtitle">Log in to manage your school event files.</p>
 
         <?php if($msg) echo "<div class='alert alert-danger mb-4 py-3 px-4 small border-0' style='background:rgba(239,68,68,0.1); color:#f87171; border-radius:12px;'>$msg</div>"; ?>
 
