@@ -120,6 +120,32 @@ if(isset($_POST['create_event'])) {
 
         .fade-in { animation: fadeIn 0.8s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .sidebar { 
+                width: 100%; 
+                height: auto; 
+                position: relative; 
+                border-right: none; 
+                border-bottom: 1px solid var(--border); 
+            }
+            .main-content { margin-left: 0; padding: 30px 20px; }
+            .sidebar-scroll { 
+                display: flex; 
+                overflow-x: auto; 
+                padding: 15px; 
+                gap: 15px;
+            }
+            .nav-item-card { 
+                min-width: 250px; 
+                margin-bottom: 0; 
+            }
+            .sidebar-header { padding: 20px; }
+            .sidebar-footer { display: none; }
+            .app-wrapper { flex-direction: column; }
+            .page-title { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>

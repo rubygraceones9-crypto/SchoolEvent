@@ -90,6 +90,16 @@ if(!$event) {
         .footer-text { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
         
         .empty-state { padding: 100px 0; text-align: center; }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .event-title { font-size: 2.2rem; }
+            .portal-header { padding: 40px 20px; }
+            .event-meta { font-size: 1rem; }
+            .gallery-wrap { padding: 40px 0; }
+            .asset-card { border-radius: 20px; }
+            .card-details { padding: 20px; }
+        }
     </style>
 </head>
 <body>

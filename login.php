@@ -171,7 +171,12 @@ if(isset($_POST['login'])) {
 
         @media (max-width: 900px) {
             .info-area { display: none; }
-            .login-container { max-width: 450px; }
+            .login-container { max-width: 450px; margin: 20px; }
+            body { overflow-y: auto; height: auto; min-height: 100vh; padding: 40px 0; }
+        }
+        @media (max-width: 480px) {
+            .login-form-area { padding: 40px 30px; }
+            .title { font-size: 2rem; }
         }
     </style>
 </head>
