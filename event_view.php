@@ -131,19 +131,42 @@ if(!$event) {
                 </div>
             <?php endif;
             while($media = mysqli_fetch_assoc($assets)) {
-                $ext = strtoupper(pathinfo($media['file_path'], PATHINFO_EXTENSION));
+                $ext = strtolower(pathinfo($media['file_path'], PATHINFO_EXTENSION));
+                $is_image = in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'gif']);
+                $is_video = in_array($ext, ['mp4', 'webm', 'ogg', 'mov']);
+                $is_pdf = ($ext === 'pdf');
+                $is_doc = in_array($ext, ['doc', 'docx', 'txt']);
             ?>
                 <div class="col-md-6 col-lg-4">
                     <div class="asset-card">
                         <div class="img-box">
-                            <span class="img-type"><?php echo $ext; ?> HD</span>
-                            <img src="watermark.php?image=<?php echo urlencode($media['file_path']); ?>" alt="Photo">
+                            <span class="img-type"><?php echo strtoupper($ext); ?> HD</span>
+                            <?php if($is_image): ?>
+                                <img src="watermark.php?image=<?php echo urlencode($media['file_path']); ?>" alt="Photo">
+                            <?php elseif($is_video): ?>
+                                <video class="w-100 h-100" controls style="object-fit: cover;">
+                                    <source src="<?php echo $media['file_path']; ?>" type="video/<?php echo ($ext === 'mov' ? 'mp4' : $ext); ?>">
+                                    Your browser does not support the video tag.
+                                </video>
+                            <?php elseif($is_pdf): ?>
+                                <div class="d-flex align-items-center justify-content-center h-100 bg-danger text-white">
+                                    <i class="bi bi-file-earmark-pdf-fill display-1"></i>
+                                </div>
+                            <?php elseif($is_doc): ?>
+                                <div class="d-flex align-items-center justify-content-center h-100 bg-primary text-white">
+                                    <i class="bi bi-file-earmark-word-fill display-1"></i>
+                                </div>
+                            <?php else: ?>
+                                <div class="d-flex align-items-center justify-content-center h-100 bg-secondary text-white">
+                                    <i class="bi bi-file-earmark-fill display-1"></i>
+                                </div>
+                            <?php endif; ?>
                         </div>
                         <div class="card-details">
                             <div class="asset-title"><?php echo $media['title'] ?: $media['file_name']; ?></div>
-                            <div class="asset-subtitle">Good Photo</div>
+                            <div class="asset-subtitle"><?php echo strtoupper($ext); ?> File</div>
                             <a href="<?php echo $media['file_path']; ?>" download class="btn-download">
-                                <i class="bi bi-cloud-arrow-down-fill"></i> Save Photo
+                                <i class="bi bi-cloud-arrow-down-fill"></i> Save File
                             </a>
                         </div>
                     </div>

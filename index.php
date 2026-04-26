@@ -233,16 +233,40 @@ if(isset($_POST['create_event'])) {
                                 <?php
                                 $assets = mysqli_query($conn, "SELECT * FROM media_assets WHERE event_id = " . $evt['id'] . " ORDER BY id DESC");
                                 while($asset = mysqli_fetch_assoc($assets)) {
+                                    $ext = strtolower(pathinfo($asset['file_path'], PATHINFO_EXTENSION));
+                                    $is_image = in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'gif']);
+                                    $is_video = in_array($ext, ['mp4', 'webm', 'ogg', 'mov']);
+                                    $is_pdf = ($ext === 'pdf');
+                                    $is_doc = in_array($ext, ['doc', 'docx', 'txt']);
                                 ?>
                                     <div class="asset-item">
-                                        <img src="watermark.php?image=<?php echo urlencode($asset['file_path']); ?>">
+                                        <?php if($is_image): ?>
+                                            <img src="watermark.php?image=<?php echo urlencode($asset['file_path']); ?>">
+                                        <?php elseif($is_video): ?>
+                                            <div class="d-flex align-items-center justify-content-center h-100 bg-dark text-white">
+                                                <i class="bi bi-play-circle-fill display-4"></i>
+                                            </div>
+                                        <?php elseif($is_pdf): ?>
+                                            <div class="d-flex align-items-center justify-content-center h-100 bg-danger text-white">
+                                                <i class="bi bi-file-earmark-pdf-fill display-4"></i>
+                                            </div>
+                                        <?php elseif($is_doc): ?>
+                                            <div class="d-flex align-items-center justify-content-center h-100 bg-primary text-white">
+                                                <i class="bi bi-file-earmark-word-fill display-4"></i>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="d-flex align-items-center justify-content-center h-100 bg-secondary text-white">
+                                                <i class="bi bi-file-earmark-fill display-4"></i>
+                                            </div>
+                                        <?php endif; ?>
+                                        
                                         <div class="asset-overlay">
                                             <div class="small fw-bold text-white text-truncate mb-2"><?php echo $asset['title'] ?: $asset['file_name']; ?></div>
                                             <button onclick="confirmDeleteMedia('<?php echo $asset['id']; ?>')" class="btn btn-sm btn-danger py-1 px-2 w-100" style="font-size: 0.7rem;"><i class="bi bi-trash"></i> Delete</button>
                                         </div>
                                     </div>
                                 <?php } ?>
-                                <?php if(mysqli_num_rows($assets) == 0) echo '<div class="col-12 text-center py-5 text-muted">Start by adding some photos.</div>'; ?>
+                                <?php if(mysqli_num_rows($assets) == 0) echo '<div class="col-12 text-center py-5 text-muted">Start by adding some photos or files.</div>'; ?>
                             </div>
                         </div>
                     </div>
